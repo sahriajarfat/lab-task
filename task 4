@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Student
+{
+    int uniqueId, semCmplt, crdCmplt;
+    float cgpa;
+};
+
+string ordinal(int x)
+{
+    if (x == 1) return to_string(x) + "st";
+    if (x == 2) return to_string(x) + "nd";
+    if (x == 3) return to_string(x) + "rd";
+    return to_string(x) + "th";
+}
+
+void printStudent(Student &student)
+{
+    cout << "Unique Id: " << student.uniqueId << endl;
+    cout << "Semesters completed: " << student.semCmplt << endl;
+    cout << "Credits Id: " << student.crdCmplt << endl;
+    cout << "CGPA: " << student.cgpa << endl;
+    cout << endl;
+}
+
+int main()
+{
+    int numberOfStudents = 1;
+    Student students[numberOfStudents];
+
+
+    for (int i = 0; i < numberOfStudents; i++) {
+        cout << "Enter information of " << ordinal(i+1) << " student:" << endl;
+
+        cout << "Unique Id: ";
+        cin >> students[i].uniqueId;
+
+        cout << "Semesters completed: ";
+        cin >> students[i].semCmplt;
+
+        cout << "Credits completed: ";
+        cin >> students[i].crdCmplt;
+
+        cout << "CGPA: ";
+        cin >> students[i].cgpa;
+
+        cout << endl;
+    }
+
+    }
+
+
+
+    cout << "Scholarship students IDs: ";
+    for (int i = 0; i < numberOfStudents; i++)
+    {
+        if (i > 0) cout << ", ";
+        Student currentStudent = students[i];
+        if (currentStudent.cgpa >= 3.75) {
+            cout << currentStudent.uniqueId;
+        }
+    }
+    cout << endl;
+
+
+    cout << "Students with credits more than 50: ";
+    for (int i = 0; i < numberOfStudents; i++)
+    {
+        if (i > 0) cout << ", ";
+        Student currentStudent = students[i];
+        if (currentStudent.crdCmplt > 50) {
+            cout << currentStudent.uniqueId;
+        }
+    }
+    cout << endl;
+
+
+    cout << "Students who has completed minimum 2 semesters and minimum 28 credits: ";
+    for (int i = 0; i < numberOfStudents; i++)
+    {
+        if (i > 0) cout << ", ";
+        Student currentStudent = students[i];
+        if (currentStudent.crdCmplt >= 28 && currentStudent.semCmplt >= 2) {
+            cout << currentStudent.uniqueId;
+        }
+    }
+    cout << endl;
+}
