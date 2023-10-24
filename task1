@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct BankAccount
+{
+    int acc;
+    string name;
+    float balance;
+};
+
+void printInstruction()
+{
+    cout << "For deposit press: 1" << endl;
+    cout << "To withdraw money press: 2" << endl;
+    cout << "To display account details press: 3" << endl;
+    cout << "To exit press: 0" << endl;
+    cout << endl;
+}
+
+int main()
+{
+    BankAccount account;
+    account.acc = 934394832;
+    account.balance = 0;
+
+
+    cout << "Welcome to our bank. Please provide required information to open the account:" << endl;
+
+    cout << "Your name: ";
+    cin >> account.name;
+    cout << "Account created successfully!" << endl;
+    cout << endl;
+
+    while (true)
+    {
+        printInstruction();
+        int command;
+        cin >> command;
+        if (command == 1)
+        {
+            cout << "Enter amount to deposit: ";
+            int depositAmount;
+            cin >> depositAmount;
+            account.balance += depositAmount;
+            cout << "Taka " << depositAmount << " deposited successfully!" << endl;
+            cout << endl;
+        }
+        else if (command == 2) {
+            cout << "Enter amount to withdraw: ";
+            int withdrawAmount;
+            cin >> withdrawAmount;
+            if (withdrawAmount > account.balance) {
+                cout << "Insufficient balance!" << endl;
+                cout << endl;
+            }
+            else {
+                account.balance -= withdrawAmount;
+                cout << "Taka " << withdrawAmount << " withdrawal is successfull" << endl;
+                cout << endl;
+            }
+        }
+        else if (command == 3) {
+            cout << "Account no: " << account.acc << endl;
+            cout << "Account name: " << account.name << endl;
+            cout << "Account balance: " << account.balance << endl;
+            cout << endl;
+        }
+        else if (command == 0) {
+            break;
+        }
+        else {
+            cout << "Invalid command! Please type a number accordingly." << endl;
+            cout << endl;
+        }
+    }
+}
+
