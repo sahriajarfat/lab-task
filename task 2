@@ -2,45 +2,30 @@
 
 using namespace std;
 
-string encode(string &s, int j)
+string encode(string &s)
 {
-    j++;
-    string result = "";
-    for (int i = 0; i < s.length(); i++) {
-        if(i % j == j - 1) {
-            result += char(s[i] + 2);
-        }
-        else {
-            result += s[i];
-        }
+    for(int i = 2; i<s.length(); i+=3){
+        s[i] = char(s[i] + 2);
     }
-    return result;
+    return s;
 }
-
-string decode(string &s, int j)
+string decode(string &s)
 {
-    j++;
-    string result = "";
-    for (int i = 0; i < s.length(); i++) {
-        if(i % j == j - 1) {
-            result += char(s[i] - 2);
-        }
-        else {
-            result += s[i];
-        }
+    for(int i = 2; i<s.length(); i+=3){
+        s[i] = char(s[i] - 2);
     }
-    return result;
+    return s;
 }
 
 int main()
 {
     string s = "I am a student";
-    int j = 2;
     cout << "Sample string: " << s << endl;
 
-    string encoded = encode(s, j);
+    string encoded = encode(s);
     cout << "Encoded string: " << encoded << endl;
 
-    string decoded = decode(encoded, j);
+    string decoded = decode(encoded);
     cout << "Decoded string: " << decoded << endl;
 }
+
