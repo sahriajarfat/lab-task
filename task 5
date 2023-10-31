@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n = 10;
+    int arr[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter element " << i + 1 << ": ";
+        cin >> arr[i];
+    }
+
+    sort(arr, arr + n);
+
+    int left = 0, right = n - 1;
+    int minSum = INT_MAX;
+    int element1, element2;
+
+    while (left < right) {
+        int currentSum = arr[left] + arr[right];
+        if (abs(currentSum) < minSum) {
+            minSum = abs(currentSum);
+            element1 = arr[left];
+            element2 = arr[right];
+        }
+
+        if (currentSum < 0)
+            left++;
+        else
+            right--;
+    }
+
+    cout << "Two elements with the sum nearest to zero are: " << element1 << " and " << element2 << endl;
+
+    return 0;
+}
