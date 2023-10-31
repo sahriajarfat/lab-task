@@ -1,0 +1,83 @@
+#include <iostream>
+
+using namespace std;
+
+class Stack {
+private:
+    int elements[100];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(int val) {
+        if (top < 99) {
+            elements[++top] = val;
+        } else {
+            cout << "Stack is full. Cannot push more elements." << endl;
+        }
+    }
+
+    void popLowest() {
+        if (top == -1) {
+            cout << "Stack is empty." << endl;
+            return;
+        }
+
+        int minElement = elements[0];
+        int minIndex = 0;
+
+        for (int i = 1; i <= top; i++) {
+            if (elements[i] < minElement) {
+                minElement = elements[i];
+                minIndex = i;
+            }
+        }
+
+        cout << "Removing the lowest element: " << minElement << endl;
+        for (int i = minIndex; i < top; i++) {
+            elements[i] = elements[i + 1];
+        }
+        top--;
+    }
+
+    void display() {
+        cout << "Stack elements are: ";
+        for (int i = 0; i <= top; i++) {
+            cout << elements[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack stack;
+
+    
+    stack.push(5);
+    stack.push(2);
+    stack.push(4);
+    stack.push(7);
+
+    cout << "Stack elements are: ";
+    stack.display();
+
+    
+    stack.popLowest();
+    cout << "Stack elements are: ";
+    stack.display();
+
+    stack.push(2);
+    stack.push(-1);
+
+    cout << "Stack elements are: ";
+    stack.display();
+
+    stack.popLowest();
+    cout << "Stack elements are: ";
+    stack.display();
+
+    return 0;
+}
